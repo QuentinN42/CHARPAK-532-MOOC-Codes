@@ -8,8 +8,15 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+document.addEventListener('click', parseHTML);
+
 function parseHTML(htmlText)
 {
+    /*
+    htmlText = document.getElementById("main").innerHTML;
+    let t1 = [for (x of String(htmlText).split("<tr>")) x.split("<td>")];
+    console.log(t1);
+    */
     return []
 }
 
