@@ -62,3 +62,16 @@ function parseTable(table)
     }
     return output;
 }
+
+function compil(table)
+{
+    let out = [];
+    table.forEach(work);
+
+    function work(line)
+    {
+        /* do some shit here */
+        out.push(line);
+    }
+    return out;
+}
