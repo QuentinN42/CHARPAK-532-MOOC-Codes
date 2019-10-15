@@ -2,7 +2,8 @@
 document.addEventListener('keydown', function(event) {
     const key = event.key;
     let tab = parseHTML(document.getElementById("main").innerHTML);
-    switch (key) {
+    switch (key)
+    {
         case "Enter":
             let score = document.getElementById("score");
             score.innerText = parseInt(score.innerText) + 1;
