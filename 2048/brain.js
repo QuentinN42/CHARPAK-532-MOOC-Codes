@@ -8,19 +8,19 @@ document.addEventListener('keydown', function(event) {
             score.innerText = parseInt(score.innerText) + 1;
             break;
         case "ArrowUp":
-            // rotate
+            tab = rotatel(tab);
             tab = compil(tab);
-            // rotate
+            tab = rotater(tab);
             break;
         case "ArrowDown":
-            // rotate
+            tab = rotater(tab);
             tab = compil(tab);
-            // rotate
+            tab = rotatel(tab);
             break;
         case "ArrowRight":
-            // rotate
+            tab = rotater(rotater(tab));
             tab = compil(tab);
-            // rotate
+            tab = rotatel(rotatel(tab));
             break;
         case "ArrowLeft":
             tab = compil(tab);
@@ -105,4 +105,23 @@ function compil(table)
         out.push(line);
     }
     return out;
+}
+
+function rotater(table)
+{
+    let out = [];
+    for(let j = 0; j < table[0].length; j++)
+    {
+        out.push([]);
+        for (let i = table.length - 1; i >= 0; i--)
+        {
+            out[out.length-1].push(table[i][j])
+        }
+    }
+    return out;
+}
+
+function rotatel(table)
+{
+    return rotater(rotater(rotater(table)));
 }
