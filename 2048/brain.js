@@ -70,7 +70,25 @@ function compil(table)
 
     function work(line)
     {
-        /* do some shit here */
+        // remove 0
+        let len = line.length;
+        line = line.filter(function f(x){return x != 0});
+        // compil table
+        let i = 0;
+        while(i < line.length)
+        {
+            if(line[i] == line[i+1])
+            {
+                line[i] = 2*line[i];
+                line.splice(i+1, 1);
+            }
+            i++;
+        }
+        // add 0
+        while(line.length < len)
+        {
+            line.push(0)
+        }
         out.push(line);
     }
     return out;
