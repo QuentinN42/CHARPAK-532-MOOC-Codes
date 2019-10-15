@@ -1,21 +1,34 @@
 
 document.addEventListener('keydown', function(event) {
     const key = event.key;
+    let tab = parseHTML(document.getElementById("main").innerHTML);
     switch (key) {
-        case "ArrowUp":
+        case "Enter":
             let score = document.getElementById("score");
             score.innerText = parseInt(score.innerText) + 1;
             break;
+        case "ArrowUp":
+            // rotate
+            tab = compil(tab);
+            // rotate
+            break;
+        case "ArrowDown":
+            // rotate
+            tab = compil(tab);
+            // rotate
+            break;
         case "ArrowRight":
-            let tab = [[0,0,0,0],[0,0,0,0],[0,1,0,0],[0,0,0,0]];
-            document.getElementById("main").innerHTML = parseTable(tab);
+            // rotate
+            tab = compil(tab);
+            // rotate
             break;
         case "ArrowLeft":
-            console.log(parseHTML(document.getElementById("main").innerHTML));
+            tab = compil(tab);
             break;
         default:
             console.log(key)
     }
+    document.getElementById("main").innerHTML = parseTable(tab);
 });
 
 function parseHTML(htmlText)
