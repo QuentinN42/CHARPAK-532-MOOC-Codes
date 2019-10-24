@@ -35,7 +35,7 @@ document.addEventListener('keydown', function(event)
     {
         tab = add_tile(tab);
     }
-    writeHTML_object(document.getElementById("main").innerHTML, tab);
+    writeHTML_object(document.getElementById("main"), tab);
 });
 
 function parseHTML_object(HtmlObject)
@@ -46,7 +46,14 @@ function parseHTML_object(HtmlObject)
         values_table.push([]);
         for (let j = 0; j < HtmlObject.rows[i].cells.length; j++)
         {
-            values_table[i].push(parseInt(HtmlObject.rows[i].cells[j].innerText));
+            if(HtmlObject.rows[i].cells[j].innerText == "")
+            {
+                values_table[i].push(0);
+            }
+            else
+            {
+                values_table[i].push(parseInt(HtmlObject.rows[i].cells[j].innerText));
+            }
         }
     }
     return values_table;
@@ -58,7 +65,23 @@ function writeHTML_object(HtmlObject, table)
     {
         for (let j = 0; j < HtmlObject.rows[i].cells.length; j++)
         {
-            HtmlObject.rows[i].cells[j].innerText = table[i][j];
+            if(table[i][j] == 0)
+            {
+                HtmlObject.rows[i].cells[j].innerText = " ";
+                HtmlObject.rows[i].cells[j].style.backgroundColor = "#ffffff";
+            }
+            else
+            {
+                HtmlObject.rows[i].cells[j].innerText = table[i][j];
+                if(table[i][j] <= 2048)
+                {
+                    HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(255,Math.log2(table[i][j])*255/11,0);
+                }
+                else
+                {
+                    HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(255,255,0);
+                }
+            }
         }
     }
 }
@@ -159,4 +182,9 @@ function add_tile(tab)
     let ind = zeros[parseInt((Math.random()*zeros.length).toString())];
     tab[ind[0]][ind[1]] = 2 * (parseInt((Math.random() * 2).toString()) + 1); // 2 or 4 - 50%
     return tab
+}
+
+function rgbToHex(r, g, b)
+{
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
