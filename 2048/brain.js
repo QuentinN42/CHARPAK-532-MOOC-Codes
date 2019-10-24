@@ -38,33 +38,6 @@ document.addEventListener('keydown', function(event)
     document.getElementById("main").innerHTML = parseTable(tab);
 });
 
-function parseHTML(htmlText)
-{
-    let tab = [];
-    htmlText = htmlText.replace(new RegExp("<tbody>","g")," ");
-    htmlText = htmlText.replace(new RegExp("</tbody>","g")," ");
-    htmlText = htmlText.replace(new RegExp("</td>","g")," ");
-    htmlText = htmlText.replace(new RegExp("</tr>","g")," ");
-    htmlText = htmlText.replace(new RegExp("\n","g")," ");
-    htmlText = htmlText.replace(/ /g,'');
-
-    let tmp = htmlText.split("<tr>");
-    tmp.forEach(append);
-
-    function append(str) {
-        tab.push(str.split("<td>"));
-    }
-    tab.shift();
-    let tab2 = [];
-    tab.forEach(append2);
-
-    function append2(line) {
-        line.shift();
-        tab2.push(line);
-    }
-    return tab2
-}
-
 function parseHTML_object(HtmlObject)
 {
     let values_table = [];
