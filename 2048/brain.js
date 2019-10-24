@@ -35,14 +35,12 @@ document.addEventListener('keydown', function(event)
     {
         tab = add_tile(tab);
     }
-    document.getElementById("main").innerHTML = parseTable(tab);
+    writeHTML_object(document.getElementById("main").innerHTML, tab);
 });
 
 function parseHTML_object(HtmlObject)
 {
     let values_table = [];
-    
-    
     for(let i=0; i < HtmlObject.rows.length; i++)
     {
         values_table.push([]);
@@ -54,22 +52,15 @@ function parseHTML_object(HtmlObject)
     return values_table;
 }
 
-function parseTable(table)
+function writeHTML_object(HtmlObject, table)
 {
-    let output = "";
-    table.forEach(Build);
-
-    function Build(line)
+    for(let i=0; i < HtmlObject.rows.length; i++)
     {
-        let tmp = "";
-        line.forEach(build);
-        output += "<tr>" + tmp + "</tr>";
-
-        function build(e) {
-            tmp += "<td>" + e + "</td>"
+        for (let j = 0; j < HtmlObject.rows[i].cells.length; j++)
+        {
+            HtmlObject.rows[i].cells[j].innerText = table[i][j];
         }
     }
-    return output;
 }
 
 function compil(table)
