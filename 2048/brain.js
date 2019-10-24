@@ -1,7 +1,9 @@
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function(event)
+{
     const key = event.key;
-    let tab = parseHTML(document.getElementById("main").innerHTML);
+    let tab = parseHTML_object(document.getElementById("main"));
+    let prectab = tab;
     switch (key)
     {
         case "Enter":
@@ -28,6 +30,10 @@ document.addEventListener('keydown', function(event) {
             break;
         default:
             console.log(key)
+    }
+    if(!is_same(tab,prectab))
+    {
+        tab = add_tile(tab);
     }
     document.getElementById("main").innerHTML = parseTable(tab);
 });
@@ -57,6 +63,22 @@ function parseHTML(htmlText)
         tab2.push(line);
     }
     return tab2
+}
+
+function parseHTML_object(HtmlObject)
+{
+    let values_table = [];
+    
+    
+    for(let i=0; i < HtmlObject.rows.length; i++)
+    {
+        values_table.push([]);
+        for (let j = 0; j < HtmlObject.rows[i].cells.length; j++)
+        {
+            values_table[i].push(parseInt(HtmlObject.rows[i].cells[j].innerText));
+        }
+    }
+    return values_table;
 }
 
 function parseTable(table)
@@ -125,4 +147,52 @@ function rotater(table)
 function rotatel(table)
 {
     return rotater(rotater(rotater(table)));
+}
+
+function is_same(ar1, ar2)
+{
+    if(ar1.length != ar2.length)
+    {
+        return false;
+    }
+    for(let i = 0; i < ar1.length; i++)
+    {
+        if(Array.isArray(ar1[i]) && Array.isArray(ar2[i]))
+        {
+            if(!is_same(ar1[i],ar2[i]))
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if(Array.isArray(ar1[i]) || Array.isArray(ar2[i]))
+            {
+                return false;
+            }
+            if(ar1[i] != ar2[i])
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function add_tile(tab)
+{
+    let zeros = [];
+    for(let i=0; i < tab.length; i++)
+    {
+        for(let j=0; j < tab[i].length; j++)
+        {
+            if(tab[i][j] === 0)
+            {
+                zeros.push([i,j])
+            }
+        }
+    }
+    let ind = zeros[parseInt((Math.random()*zeros.length).toString())];
+    tab[ind[0]][ind[1]] = 2 * (parseInt((Math.random() * 2).toString()) + 1); // 2 or 4 - 50%
+    return tab
 }
