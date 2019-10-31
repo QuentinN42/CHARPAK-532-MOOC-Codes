@@ -1,14 +1,16 @@
+let score = 0;
 
 document.addEventListener('keydown', function(event)
 {
     const key = event.key;
     let tab = parseHTML_object(document.getElementById("main"));
     let prectab = tab;
+    score = parseInt(document.getElementById("score").innerText);
     switch (key)
     {
         case "Enter":
-            let score = document.getElementById("score");
-            score.innerText = parseInt(score.innerText) + 1;
+            tab = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+            score = 0;
             break;
         case "ArrowUp":
             tab = rotatel(tab);
@@ -36,6 +38,7 @@ document.addEventListener('keydown', function(event)
         tab = add_tile(tab);
     }
     writeHTML_object(document.getElementById("main"), tab);
+    document.getElementById("score").innerText = score;
 });
 
 function parseHTML_object(HtmlObject)
@@ -102,6 +105,7 @@ function compil(table)
         {
             if(line[i] == line[i+1])
             {
+                score += line[i];
                 line[i] = 2*line[i];
                 line.splice(i+1, 1);
             }
