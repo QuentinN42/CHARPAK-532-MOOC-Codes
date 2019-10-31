@@ -71,7 +71,7 @@ function writeHTML_object(HtmlObject, table)
             if(table[i][j] == 0)
             {
                 HtmlObject.rows[i].cells[j].innerText = " ";
-                HtmlObject.rows[i].cells[j].style.backgroundColor = "#ffffff";
+                HtmlObject.rows[i].cells[j].style.backgroundColor = "#282C34";
             }
             else
             {
