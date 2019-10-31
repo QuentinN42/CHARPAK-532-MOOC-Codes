@@ -1,8 +1,6 @@
 let settings;
 
 
-console.log(default_data);
-
 function activeDelete(obj)
 {
     obj.style.background = "url(\"actD.png\")";
@@ -41,7 +39,7 @@ function addKey(keyNumber)
 {
     // onkeypress=\"keytosave("+keyNumber+")\"
     document.body.setAttribute("onkeyup","keytosave("+keyNumber+")");
-    document.getElementById("sc").innerHTML = "<div id=\"adding\"> <h1> New key ? <br> Esc to cancel. </h1> </div>";
+    document.getElementById("sc").innerHTML = "<div class=\"adding\"> <h1> New key ? <br> Esc to cancel. </h1> </div>";
 }
 function keytosave(keyNumber)
 {
@@ -109,9 +107,9 @@ function display()
         KeysStr += "<tr> <td><h3>" + settings.keys[i].name + "</h3></td>";
         for (let j = 0; j < settings.keys[i].value.length; j++)
         {
-            KeysStr += "<td id=\"keycell\"> <div id=\"keyAera\"> <div id=\"keyName\" >" + settings.keys[i].value[j] + "</div> <div id=\"keyDelete\" onclick=\"deleteKey(settings.keys["+i+"].value["+j+"],"+i+")\" onmouseenter=\"activeDelete(this)\" onmouseleave=\"unactiveDelete(this)\"> </div> </div> </td>";
+            KeysStr += "<td class=\"keycell\"> <div class=\"keyAera\"> <div class=\"keyName\" >" + settings.keys[i].value[j] + "</div> <div class=\"keyDelete\" onclick=\"deleteKey(settings.keys["+i+"].value["+j+"],"+i+")\" onmouseenter=\"activeDelete(this)\" onmouseleave=\"unactiveDelete(this)\"> </div> </div> </td>";
         }
-        KeysStr += "<td> <div id=\"newkey\" onclick=\"addKey("+i+")\" onmouseenter=\"activeAdd(this)\" onmouseleave=\"unactiveAdd(this)\"> </div> </td> </tr>";// add +
+        KeysStr += "<td> <div class=\"newkey\" onclick=\"addKey("+i+")\" onmouseenter=\"activeAdd(this)\" onmouseleave=\"unactiveAdd(this)\"> </div> </td> </tr>";// add +
     }
     KeysStr += "</table>";
     //------------------------------------------------------------------------------------------
@@ -121,7 +119,7 @@ function display()
     {
         checkboxStr += "<tr>";
         checkboxStr += "<td><h3>" + settings.checkbox[i].name + "</h3></td>";
-        checkboxStr += "<td> <input id=\"c"+i+"\" type=\"checkbox\" onchange=\"updateCheckbox("+i+")\" ";
+        checkboxStr += "<td> <input class=\"c"+i+"\" type=\"checkbox\" onchange=\"updateCheckbox("+i+")\" ";
         if (settings.checkbox[i].value) {
             checkboxStr +="checked";
         }
@@ -137,57 +135,47 @@ function display()
         let P = settings.range[i];
         PowStr += "<tr>";
         PowStr += "<td><h3>" + P.name + "</h3></td>";
-        PowStr += "<td><input id=\"pr"+i+"\" type=\"range\" onchange=\"updaterangeNumber("+i+")\" min=\"" + P.min + "\" max=\"" + P.max + "\" step=\"" + P.step +"\" value=\"" + P.value + "\"></td>";
-        PowStr += "<td><input id=\"pn"+i+"\" type=\"number\" onchange=\"updaterangeRange("+i+")\" min=\"" + P.min + "\" max=\"" + P.max + "\" step=\"" + P.step +"\" value=\"" + P.value + "\"></td>";
+        PowStr += "<td><input class=\"pr"+i+"\" type=\"range\" onchange=\"updaterangeNumber("+i+")\" min=\"" + P.min + "\" max=\"" + P.max + "\" step=\"" + P.step +"\" value=\"" + P.value + "\"></td>";
+        PowStr += "<td><input class=\"pn"+i+"\" type=\"number\" onchange=\"updaterangeRange("+i+")\" min=\"" + P.min + "\" max=\"" + P.max + "\" step=\"" + P.step +"\" value=\"" + P.value + "\"></td>";
         PowStr += "</tr>";
     }
     PowStr += "</table>";
     //------------------------------------------------------------------------------------------
-    let Str = KeysStr + checkboxStr + PowStr;
-    document.getElementById("sc").innerHTML = Str;
+    document.getElementById("sc").innerHTML = KeysStr + checkboxStr + PowStr;
 }
 
-function initsettings()
+
+function init_settings()
 {
-    settings = JSON.parse("settings/settings.json");
-    console.log(settings);
-    display();
+    if(localStorage.getItem("settings") === null)
+    {
+        settings = default_data;
+    }
+    else
+    {
+        settings = JSON.parse(localStorage.getItem("settings"));
+    }
 }
+
 
 function save()
 {
-    localStorage.setItem("settings/settings.json",JSON.stringify(settings,null,2));
+    localStorage.setItem("settings",JSON.stringify(settings));
 }
 
 
-
-function setAsDefault()
-{
-    save();
-    fs = require('fs');
-    let text = JSON.stringify(settings,null,2);
-    fs.writeFileSync("settings/default.json",text,{encoding:'utf8',flag:'w'});
-}
 function loadDefault()
 {
-    fs = require('fs');
-    let text = fs.readFileSync("settings/default.json",'utf8');
-    settings = JSON.parse(text);
+    settings = default_data;
+    save();
     display();
 }
 
 
 function init()
 {
-    /*
-    let arr = document.getElementsByTagName("button");
-    for (let i = 0; i < arr.length; i++)
-    {
-        arr[i].setAttribute("onmouseenter","activeButton(this)");
-        arr[i].setAttribute("onmouseleave","unactiveButton(this)");
-    }
-    */
-    //initsettings();
+    init_settings();
+    display();
 }
 
 

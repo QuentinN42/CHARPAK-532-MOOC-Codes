@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="En">
     <head>
         <meta charset="UTF-8">
         <title>Settings</title>
@@ -11,16 +11,14 @@
         <script src="settings.js"></script>
     </head>
     <body onload="init()">
-        <h1>Settings :</h1>
+        <h1>Settings</h1>
 
 
         <div class="buttonbar">
             <button onclick="save()"> Save </button>
-            <button onclick="setAsDefault()"> Set as default settings </button>
             <button onclick="loadDefault()"> Load default settings </button>
-            <button onclick="initsettings()"> Cancel </button>
+            <button onclick="init_settings()"> Cancel </button>
         </div>
-
 
 
         <div id="sc">
@@ -29,9 +27,8 @@
 
         <div class="buttonbar">
             <button onclick="save()"> Save </button>
-            <button onclick="setAsDefault()"> Set as default settings </button>
             <button onclick="loadDefault()"> Load default settings </button>
-            <button onclick="initsettings()"> Cancel </button>
+            <button onclick="init_settings()"> Cancel </button>
         </div>
 
         <h1 style="color:rgb(40,44,52);"> _ </h1>
