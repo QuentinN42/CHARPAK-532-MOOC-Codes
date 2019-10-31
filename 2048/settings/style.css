@@ -1,0 +1,85 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: rgb(40,44,52);
+  color: rgb(157,165,180);
+  font-family: Segoe UI,SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+h1 {
+  margin-left: 40px;
+}
+
+#sc{
+  margin-left: 20px;
+}
+
+.buttonbar{
+  margin-left: 50px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+button{
+  background-color: #3a3f4b;
+  color: rgb(157,165,180);
+  border: 0px;
+  border-radius: 10px;
+  font-size: 150%;
+}
+
+.keycell{
+  width: 128px;
+}
+
+.keyAera{
+  border-radius: 14px;
+  background-color: #3a3f4b;
+  vertical-align: middle;
+  text-align: center;
+  height: 32px;
+}
+
+.keyName{
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  height: 32px;
+  width: 96px;
+}
+
+.keyDelete{
+  background-image: url("inactD.png");
+  border-radius: 16px;
+  position: relative;
+  text-align: center;
+  margin-left: 96px;
+  margin-top: -36px;
+  height: 32px;
+  width: 32px;
+}
+
+
+.newkey{
+  background-image: url("inactA.png");
+  border-radius: 16px;
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  margin-top: -16px;
+  height: 32px;
+  width: 32px;
+}
+
+
+.adding{
+  margin: 25%;
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  height: 50%;
+  width: 50%;
+}
