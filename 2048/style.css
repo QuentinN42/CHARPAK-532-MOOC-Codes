@@ -12,7 +12,6 @@ div.content {
 
 table.main {
     margin: auto;
-    border: 1px solid #000000;
     border-collapse: collapse;
     padding: 0;
     width: 500px;
@@ -22,7 +21,6 @@ table.main {
 }
 
 tr {
-    border: 1px solid black;
     border-collapse: collapse;
     padding: 0;
     margin: 0;
@@ -33,7 +31,7 @@ tr {
 }
 
 td {
-    border: 1px solid black;
+    border: none;
     border-collapse: collapse;
     padding: 0;
     margin: 0;
@@ -44,7 +42,7 @@ td {
 button{
     background-color: #3a3f4b;
     color: rgb(157,165,180);
-    border: 0px;
+    border: 0;
     border-radius: 10px;
     font-size: 150%;
 }
