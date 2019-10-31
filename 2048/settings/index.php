@@ -15,9 +15,11 @@
 
 
         <div class="buttonbar">
-            <button onclick="save()"> Save </button>
-            <button onclick="loadDefault()"> Load default settings </button>
-            <button onclick="init_settings()"> Cancel </button>
+            <form>
+                <button onclick="save()"> Save </button>
+                <button onclick="loadDefault()"> Load default settings </button>
+                <button type="submit" formaction="../"> Go back </button>
+            </form>
         </div>
 
 
@@ -26,9 +28,11 @@
         </div>
 
         <div class="buttonbar">
-            <button onclick="save()"> Save </button>
-            <button onclick="loadDefault()"> Load default settings </button>
-            <button onclick="init_settings()"> Cancel </button>
+            <form>
+                <button onclick="save()"> Save </button>
+                <button onclick="loadDefault()"> Load default settings </button>
+                <button type="submit" formaction="../"> Go back </button>
+            </form>
         </div>
 
         <h1 style="color:rgb(40,44,52);"> _ </h1>

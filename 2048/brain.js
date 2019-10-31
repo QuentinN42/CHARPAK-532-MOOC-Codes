@@ -6,29 +6,29 @@ document.addEventListener('keydown', function(event)
     let tab = parseHTML_object(document.getElementById("main"));
     let prectab = tab;
     score = parseInt(document.getElementById("score").innerText);
-    switch (key)
+    switch (true)
     {
-        case "Enter":
+        case settings.keys[0].value.includes(key):
             tab = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
             score = 0;
             break;
-        case "ArrowUp":
+        case settings.keys[1].value.includes(key):
             tab = rotatel(tab);
             tab = compil(tab);
             tab = rotater(tab);
             break;
-        case "ArrowDown":
+        case settings.keys[2].value.includes(key):
             tab = rotater(tab);
             tab = compil(tab);
             tab = rotatel(tab);
             break;
-        case "ArrowRight":
+        case settings.keys[3].value.includes(key):
+            tab = compil(tab);
+            break;
+        case settings.keys[4].value.includes(key):
             tab = rotater(rotater(tab));
             tab = compil(tab);
             tab = rotatel(rotatel(tab));
-            break;
-        case "ArrowLeft":
-            tab = compil(tab);
             break;
         default:
             console.log(key)
@@ -70,19 +70,32 @@ function writeHTML_object(HtmlObject, table)
         {
             if(table[i][j] == 0)
             {
-                HtmlObject.rows[i].cells[j].innerText = " ";
+                if(settings.checkbox[0].value)
+                {
+                    HtmlObject.rows[i].cells[j].innerText = table[i][j];
+                }
+                else
+                {
+                    HtmlObject.rows[i].cells[j].innerText = " ";
+                }
                 HtmlObject.rows[i].cells[j].style.backgroundColor = "#282C34";
             }
             else
             {
                 HtmlObject.rows[i].cells[j].innerText = table[i][j];
-                if(table[i][j] <= 2048)
+                if(settings.checkbox[1].value)
                 {
-                    HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(255,Math.log2(table[i][j])*255/11,0);
+                    if (table[i][j] <= 2048)
+                    {
+                        HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(255, Math.log2(table[i][j]) * 255 / 11, 0);
+                    } else
+                    {
+                        HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(255, 255, 0);
+                    }
                 }
                 else
                 {
-                    HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(255,255,0);
+                    HtmlObject.rows[i].cells[j].style.backgroundColor = "#282C34";
                 }
             }
         }

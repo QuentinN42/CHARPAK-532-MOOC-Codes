@@ -37,20 +37,19 @@ function unactiveButton(obj)
 
 function addKey(keyNumber)
 {
-    // onkeypress=\"keytosave("+keyNumber+")\"
-    document.body.setAttribute("onkeyup","keytosave("+keyNumber+")");
     document.getElementById("sc").innerHTML = "<div class=\"adding\"> <h1> New key ? <br> Esc to cancel. </h1> </div>";
-}
-function keytosave(keyNumber)
-{
-    document.body.setAttribute("onkeyup","");
-    if (event.code!="Escape")
+    document.addEventListener('keydown', f);
+    function f(event)
     {
-        settings.keys[keyNumber].value.push(event.code);
+        const key = event.key;
+        if (key != "Escape")
+        {
+            settings.keys[keyNumber].value.push(key);
+        }
+        document.removeEventListener('keydown', f);
+        display();
     }
-    display();
 }
-
 
 
 
@@ -119,7 +118,7 @@ function display()
     {
         checkboxStr += "<tr>";
         checkboxStr += "<td><h3>" + settings.checkbox[i].name + "</h3></td>";
-        checkboxStr += "<td> <input class=\"c"+i+"\" type=\"checkbox\" onchange=\"updateCheckbox("+i+")\" ";
+        checkboxStr += "<td> <input id=\"c"+i+"\" type=\"checkbox\" onchange=\"updateCheckbox("+i+")\" ";
         if (settings.checkbox[i].value) {
             checkboxStr +="checked";
         }

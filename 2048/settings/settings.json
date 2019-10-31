@@ -1,37 +1,44 @@
 {
   "keys": [
     {
+      "name": "Replay",
+      "value": [
+        "r",
+        "Enter"
+      ]
+    },
+    {
       "name": "Up",
       "value": [
-        "KeyW",
+        "z",
         "ArrowUp"
       ]
     },
     {
       "name": "Down",
       "value": [
-        "KeyS",
+        "s",
         "ArrowDown"
       ]
     },
     {
       "name": "Left",
       "value": [
-        "KeyA",
+        "q",
         "ArrowLeft"
       ]
     },
     {
       "name": "Right",
       "value": [
-        "KeyD",
+        "d",
         "ArrowRight"
       ]
     }
   ],
   "checkbox": [
     {
-      "name": "Numbers",
+      "name": "Zeros",
       "value": true
     },
     {

@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <title>2048 Game</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        let settings;
+        if(localStorage.getItem("settings") === null)
+        {
+            // noinspection JSAnnotator
+            settings = <?php echo file_get_contents("settings/settings.json"); ?>;
+        }
+        else
+        {
+            settings = JSON.parse(localStorage.getItem("settings"));
+        }
+    </script>
     <script type="text/javascript" src="brain.js"></script>
 </head>
 <body>
@@ -41,7 +53,7 @@
     Score = <span id="score">0</span>
     </div>
     <form>
-        <button type="submit" formaction="settings/">Click me</button>
+        <button type="submit" formaction="settings/"> Settings </button>
     </form>
 </body>
 </html>
