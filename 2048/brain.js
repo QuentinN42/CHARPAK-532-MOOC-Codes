@@ -221,6 +221,7 @@ function rgbToHex(r, g, b)
 function restart()
 {
     document.getElementById("main").style.visibility = "visible";
+    document.getElementById("score-container").style.visibility = "visible";
     document.getElementById("lose1").style.visibility = "hidden";
     document.getElementById("lose2").style.visibility = "hidden";
     return [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
@@ -229,6 +230,7 @@ function restart()
 function lose()
 {
     document.getElementById("main").style.visibility = "hidden";
+    document.getElementById("score-container").style.visibility = "hidden";
     document.getElementById("lose1").style.visibility = "visible";
     document.getElementById("lose2").style.visibility = "visible";
     document.getElementById("lose-score").innerHTML = String(score);

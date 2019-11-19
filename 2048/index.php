@@ -23,36 +23,38 @@
     <div class="content">
         <h1 id="lose1" style="visibility: hidden"> You lose ! </h1>
         <h1 id="lose2" style="visibility: hidden"> Your score is : <span id="lose-score"></span> </h1>
-    <table id="main" class="main">
-        <tbody>
-            <tr>
-                <td>0</td>
-                <td>2</td>
-                <td>0</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>4</td>
-                <td>2</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>4</td>
-                <td>2</td>
-                <td>2</td>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>4</td>
-                <td>128</td>
-                <td>16</td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    Score = <span id="score">0</span>
+        <table id="main" class="main" style="visibility: hidden">
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>128</td>
+                    <td>16</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <h2 id="score-container" style="visibility: hidden">
+            Score = <span id="score">0</span>
+        </h2>
     </div>
     <form>
         <button type="submit" formaction="settings/"> Settings </button>
