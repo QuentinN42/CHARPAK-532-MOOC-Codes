@@ -9,7 +9,8 @@ document.addEventListener('keydown', function(event)
     switch (true)
     {
         case settings.keys[0].value.includes(key):
-            tab = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+            tab = restart();
+            tab = add_tile(tab);
             score = 0;
             break;
         case settings.keys[1].value.includes(key):
@@ -36,6 +37,10 @@ document.addEventListener('keydown', function(event)
     if(!is_same(tab,prectab))
     {
         tab = add_tile(tab);
+    }
+    if(have_lose(tab))
+    {
+        lose();
     }
     writeHTML_object(document.getElementById("main"), tab);
     document.getElementById("score").innerText = score;
@@ -211,4 +216,57 @@ function add_tile(tab)
 function rgbToHex(r, g, b)
 {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+function restart()
+{
+    document.getElementById("main").style.visibility = "visible";
+    document.getElementById("lose1").style.visibility = "hidden";
+    document.getElementById("lose2").style.visibility = "hidden";
+    return [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+}
+
+function lose()
+{
+    document.getElementById("main").style.visibility = "hidden";
+    document.getElementById("lose1").style.visibility = "visible";
+    document.getElementById("lose2").style.visibility = "visible";
+    document.getElementById("lose-score").innerHTML = String(score);
+}
+
+function have_lose(table)
+{
+    let tmp;
+    tmp = compil(table);
+    if(!is_same(table, tmp))
+    {
+        return false;
+    }
+    else
+    {
+        tmp = rotater(rotater(rotater(table)));
+        tmp = compil(tmp);
+        tmp = rotater(tmp);
+        if(!is_same(table, tmp))
+        {
+            return false;
+        }
+        else
+        {
+            tmp = rotater(table);
+            tmp = compil(tmp);
+            tmp = rotater(rotater(rotater(tmp)));
+            if(!is_same(table, tmp))
+            {
+                return false;
+            }
+            else
+            {
+                tmp = rotater(rotater(table));
+                tmp = compil(tmp);
+                tmp = rotater(rotater(tmp));
+                return is_same(table, tmp);
+            }
+        }
+    }
 }

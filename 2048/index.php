@@ -21,6 +21,8 @@
 <body>
 
     <div class="content">
+        <h1 id="lose1" style="visibility: hidden"> You lose ! </h1>
+        <h1 id="lose2" style="visibility: hidden"> Your score is : <span id="lose-score"></span> </h1>
     <table id="main" class="main">
         <tbody>
             <tr>
