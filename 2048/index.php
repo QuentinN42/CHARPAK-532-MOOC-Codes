@@ -18,12 +18,12 @@
     </script>
     <script type="text/javascript" src="brain.js"></script>
 </head>
-<body>
+<body onload="setup()">
 
     <div class="content">
         <h1 id="lose1" style="visibility: hidden"> You lose ! </h1>
         <h1 id="lose2" style="visibility: hidden"> Your score is : <span id="lose-score"></span> </h1>
-        <table id="main" class="main" style="visibility: hidden">
+        <table id="main" class="main" style="visibility: visible">
             <tbody>
                 <tr>
                     <td>0</td>
@@ -52,7 +52,7 @@
             </tbody>
         </table>
         <br>
-        <h2 id="score-container" style="visibility: hidden">
+        <h2 id="score-container" style="visibility: visible">
             Score = <span id="score">0</span>
         </h2>
     </div>

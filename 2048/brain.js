@@ -44,6 +44,8 @@ document.addEventListener('keydown', function(event)
     }
     writeHTML_object(document.getElementById("main"), tab);
     document.getElementById("score").innerText = score;
+    localStorage.setItem("tab",tab);
+    localStorage.setItem("score",score);
 });
 
 function parseHTML_object(HtmlObject)
@@ -220,7 +222,6 @@ function rgbToHex(r, g, b)
 
 function restart()
 {
-    document.getElementById("main").style.visibility = "visible";
     document.getElementById("score-container").style.visibility = "visible";
     document.getElementById("lose1").style.visibility = "hidden";
     document.getElementById("lose2").style.visibility = "hidden";
@@ -229,7 +230,6 @@ function restart()
 
 function lose()
 {
-    document.getElementById("main").style.visibility = "hidden";
     document.getElementById("score-container").style.visibility = "hidden";
     document.getElementById("lose1").style.visibility = "visible";
     document.getElementById("lose2").style.visibility = "visible";
@@ -270,5 +270,24 @@ function have_lose(table)
                 return is_same(table, tmp);
             }
         }
+    }
+}
+
+function setup()
+{
+    if(true) // (localStorage.getItem("tab") === null)
+    {
+        let tab = restart();
+        tab = add_tile(tab);
+        tab = add_tile(tab);
+        writeHTML_object(document.getElementById("main"), tab);
+        document.getElementById("score").innerText = score;
+    }
+    else
+    {
+        tab = localStorage.getItem("tab");
+        score = Number(localStorage.getItem("score"));
+        writeHTML_object(document.getElementById("main"), tab);
+        document.getElementById("score").innerText = score;
     }
 }
