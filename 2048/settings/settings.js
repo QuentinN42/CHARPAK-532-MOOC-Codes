@@ -134,8 +134,8 @@ function display()
         let P = settings.range[i];
         PowStr += "<tr>";
         PowStr += "<td><h3>" + P.name + "</h3></td>";
-        PowStr += "<td><input class=\"pr"+i+"\" type=\"range\" onchange=\"updaterangeNumber("+i+")\" min=\"" + P.min + "\" max=\"" + P.max + "\" step=\"" + P.step +"\" value=\"" + P.value + "\"></td>";
-        PowStr += "<td><input class=\"pn"+i+"\" type=\"number\" onchange=\"updaterangeRange("+i+")\" min=\"" + P.min + "\" max=\"" + P.max + "\" step=\"" + P.step +"\" value=\"" + P.value + "\"></td>";
+        PowStr += "<td><input id=\"pr"+i+"\" type=\"range\" onchange=\"updaterangeNumber("+i+")\" min=\"" + P.min + "\" max=\"" + P.max + "\" step=\"" + P.step +"\" value=\"" + P.value + "\"></td>";
+        PowStr += "<td><input id=\"pn"+i+"\" type=\"number\" onchange=\"updaterangeRange("+i+")\" min=\"" + P.min + "\" max=\"" + P.max + "\" step=\"" + P.step +"\" value=\"" + P.value + "\"></td>";
         PowStr += "</tr>";
     }
     PowStr += "</table>";

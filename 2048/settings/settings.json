@@ -53,6 +53,48 @@
       "min": 2,
       "max": 6,
       "step": 1
+    },
+    {
+      "name": "StartR",
+      "value": "4",
+      "min": 0,
+      "max": 255,
+      "step": 1
+    },
+    {
+      "name": "EndR",
+      "value": "4",
+      "min": 0,
+      "max": 255,
+      "step": 1
+    },
+    {
+      "name": "StartG",
+      "value": "4",
+      "min": 0,
+      "max": 255,
+      "step": 1
+    },
+    {
+      "name": "EndG",
+      "value": "4",
+      "min": 0,
+      "max": 255,
+      "step": 1
+    },
+    {
+      "name": "StartB",
+      "value": "4",
+      "min": 0,
+      "max": 255,
+      "step": 1
+    },
+    {
+      "name": "EndB",
+      "value": "4",
+      "min": 0,
+      "max": 255,
+      "step": 1
     }
   ]
 }

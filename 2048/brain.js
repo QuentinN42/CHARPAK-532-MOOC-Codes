@@ -85,12 +85,19 @@ function writeHTML_object(HtmlObject, table)
                 HtmlObject.rows[i].cells[j].innerText = table[i][j];
                 if(settings.checkbox[1].value)
                 {
+                    let c = Math.log2(table[i][j])/11;
+                    let startR = Number(settings.range[1].value);
+                    let endR = Number(settings.range[2].value);
+                    let startG = Number(settings.range[3].value);
+                    let endG = Number(settings.range[4].value);
+                    let startB = Number(settings.range[5].value);
+                    let endB = Number(settings.range[6].value);
                     if (table[i][j] <= 2048)
                     {
-                        HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(255, Math.log2(table[i][j]) * 255 / 11, 0);
+                        HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(startR+c*(endR-startR), startG+c*(endG-startG), startB+c*(endB-startB));
                     } else
                     {
-                        HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(255, 255, 0);
+                        HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(endR, endG, endB);
                     }
                 }
                 else
