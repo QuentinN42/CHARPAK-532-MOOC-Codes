@@ -18,7 +18,7 @@
     </script>
     <script type="text/javascript" src="brain.js"></script>
 </head>
-<body onload="setup()">
+<body onload="reset()">
 
     <div class="content">
         <h1 id="lose1" style="visibility: hidden"> You lose ! </h1>

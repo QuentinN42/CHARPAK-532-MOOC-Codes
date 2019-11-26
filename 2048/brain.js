@@ -1,4 +1,5 @@
 let score = 0;
+let n = Number(settings.range[0].value);
 
 document.addEventListener('keydown', function(event)
 {
@@ -9,10 +10,8 @@ document.addEventListener('keydown', function(event)
     switch (true)
     {
         case settings.keys[0].value.includes(key):
-            tab = restart();
-            tab = add_tile(tab);
-            score = 0;
-            break;
+            reset();
+            return;
         case settings.keys[1].value.includes(key):
             tab = rotatel(tab);
             tab = compil(tab);
@@ -44,17 +43,34 @@ document.addEventListener('keydown', function(event)
     }
     writeHTML_object(document.getElementById("main"), tab);
     document.getElementById("score").innerText = score;
-    localStorage.setItem("tab",tab);
     localStorage.setItem("score",score);
 });
+
+function color(value)
+{
+    let c = Math.log2(value)/11;
+    let startR = Number(settings.range[1].value);
+    let endR = Number(settings.range[2].value);
+    let startG = Number(settings.range[3].value);
+    let endG = Number(settings.range[4].value);
+    let startB = Number(settings.range[5].value);
+    let endB = Number(settings.range[6].value);
+    if (value <= 2048)
+    {
+        return rgbToHex(startR+c*(endR-startR), startG+c*(endG-startG), startB+c*(endB-startB));
+    } else
+    {
+        return rgbToHex(endR, endG, endB);
+    }
+}
 
 function parseHTML_object(HtmlObject)
 {
     let values_table = [];
-    for(let i=0; i < HtmlObject.rows.length; i++)
+    for(let i=0; i < n; i++)
     {
         values_table.push([]);
-        for (let j = 0; j < HtmlObject.rows[i].cells.length; j++)
+        for (let j = 0; j < n; j++)
         {
             if(HtmlObject.rows[i].cells[j].innerText == "")
             {
@@ -71,9 +87,9 @@ function parseHTML_object(HtmlObject)
 
 function writeHTML_object(HtmlObject, table)
 {
-    for(let i=0; i < HtmlObject.rows.length; i++)
+    for(let i=0; i < n; i++)
     {
-        for (let j = 0; j < HtmlObject.rows[i].cells.length; j++)
+        for (let j = 0; j < n; j++)
         {
             if(table[i][j] == 0)
             {
@@ -92,20 +108,7 @@ function writeHTML_object(HtmlObject, table)
                 HtmlObject.rows[i].cells[j].innerText = table[i][j];
                 if(settings.checkbox[1].value)
                 {
-                    let c = Math.log2(table[i][j])/11;
-                    let startR = Number(settings.range[1].value);
-                    let endR = Number(settings.range[2].value);
-                    let startG = Number(settings.range[3].value);
-                    let endG = Number(settings.range[4].value);
-                    let startB = Number(settings.range[5].value);
-                    let endB = Number(settings.range[6].value);
-                    if (table[i][j] <= 2048)
-                    {
-                        HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(startR+c*(endR-startR), startG+c*(endG-startG), startB+c*(endB-startB));
-                    } else
-                    {
-                        HtmlObject.rows[i].cells[j].style.backgroundColor = rgbToHex(endR, endG, endB);
-                    }
+                    HtmlObject.rows[i].cells[j].style.backgroundColor = color(table[i][j]);
                 }
                 else
                 {
@@ -225,7 +228,17 @@ function restart()
     document.getElementById("score-container").style.visibility = "visible";
     document.getElementById("lose1").style.visibility = "hidden";
     document.getElementById("lose2").style.visibility = "hidden";
-    return [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+    let tmp = [];
+    for (let j = 0 ; j < n; ++j)
+    {
+        tmp.push(0);
+    }
+    let zeros = [];
+    for (let i = 0 ; i < n; ++i)
+    {
+        zeros.push(tmp);
+    }
+    return zeros;
 }
 
 function lose()
@@ -275,19 +288,50 @@ function have_lose(table)
 
 function setup()
 {
-    if(true) // (localStorage.getItem("tab") === null)
+    let tab = restart();
+    tab = add_tile(tab);
+    let innerHTML = "";
+    for(let i=0; i < n; i++)
     {
-        let tab = restart();
-        tab = add_tile(tab);
-        tab = add_tile(tab);
-        writeHTML_object(document.getElementById("main"), tab);
-        document.getElementById("score").innerText = score;
+        innerHTML += "<tr>";
+        for (let j = 0; j < n; j++)
+        {
+            innerHTML += "<td style=\"background-color:";
+            if(tab[i][j] == 0)
+            {
+                innerHTML += "#282C34;\">";
+                if(settings.checkbox[0].value)
+                {
+                    innerHTML += "0";
+                }
+                else
+                {
+                    innerHTML += " ";
+                }
+            }
+            else
+            {
+                if(settings.checkbox[1].value)
+                {
+                    innerHTML += color(tab[i][j]) + ";\">";
+                }
+                else
+                {
+                    innerHTML += "#282C34;\">";
+                }
+                innerHTML += tab[i][j].toString();
+            }
+            innerHTML += "</td>";
+        }
+        innerHTML += "</tr>";
     }
-    else
-    {
-        tab = localStorage.getItem("tab");
-        score = Number(localStorage.getItem("score"));
-        writeHTML_object(document.getElementById("main"), tab);
-        document.getElementById("score").innerText = score;
-    }
+    document.getElementById("main").innerHTML = innerHTML;
+}
+
+function reset()
+{
+    setup();
+    score = 0;
+    localStorage.setItem("score",score);
+    document.getElementById("score").innerText = score;
 }
