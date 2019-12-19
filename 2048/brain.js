@@ -1,12 +1,13 @@
 let score = 0;
 let n = Number(settings.range[0].value);
+let loosing = false;
 
 document.addEventListener('keydown', function(event)
 {
     const key = event.key;
     let tab = parseHTML_object(document.getElementById("main"));
     let prectab = tab;
-    score = parseInt(document.getElementById("score").innerText);
+    if(!loosing) {score = parseInt(document.getElementById("score").innerText);}
     switch (true)
     {
         case settings.keys[0].value.includes(key):
@@ -228,6 +229,7 @@ function restart()
     document.getElementById("score-container").style.visibility = "visible";
     document.getElementById("lose1").style.visibility = "hidden";
     document.getElementById("lose2").style.visibility = "hidden";
+    loosing = false;
     let zeros = [];
     for (let i = 0 ; i < n; ++i)
     {
@@ -247,6 +249,7 @@ function lose()
     document.getElementById("lose1").style.visibility = "visible";
     document.getElementById("lose2").style.visibility = "visible";
     document.getElementById("lose-score").innerHTML = String(score);
+    loosing = true;
 }
 
 function have_lose(table)
