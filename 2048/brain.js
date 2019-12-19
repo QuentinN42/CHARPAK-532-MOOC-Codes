@@ -108,10 +108,10 @@ function color(value)
     let endB = Number(settings.range[6].value);
     if (value <= 2048)
     {
-        return rgbToHex(startR+c*(endR-startR), startG+c*(endG-startG), startB+c*(endB-startB));
+        return rgbToHex(startR+c*(endR-startR), startG+c*(endG-startG), startB+c*(endB-startB)).split(".")[0];
     } else
     {
-        return rgbToHex(endR, endG, endB);
+        return rgbToHex(endR, endG, endB).split(".")[0];
     }
 }
 
