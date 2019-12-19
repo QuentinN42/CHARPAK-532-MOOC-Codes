@@ -13,6 +13,7 @@ document.addEventListener('keydown', function(event)
         case settings.keys[0].value.includes(key):
             reset();
             return;
+        // NORMAL KEYS
         case settings.keys[1].value.includes(key):
             tab = rotatel(tab);
             tab = compil(tab);
@@ -30,6 +31,55 @@ document.addEventListener('keydown', function(event)
             tab = rotater(rotater(tab));
             tab = compil(tab);
             tab = rotatel(rotatel(tab));
+            break;
+        // CONTINUE KEYS
+        case settings.keys[5].value.includes(key):
+            tab = rotatel(tab);
+            tab = compil(tab);
+            tab = rotater(tab);
+            while(!is_same(tab,prectab))
+            {
+                tab = add_tile(tab);
+                prectab = tab;
+                tab = rotatel(tab);
+                tab = compil(tab);
+                tab = rotater(tab);
+            }
+            break;
+        case settings.keys[6].value.includes(key):
+            tab = rotater(tab);
+            tab = compil(tab);
+            tab = rotatel(tab);
+            while(!is_same(tab,prectab))
+            {
+                tab = add_tile(tab);
+                prectab = tab;
+                tab = rotater(tab);
+                tab = compil(tab);
+                tab = rotatel(tab);
+            }
+            break;
+        case settings.keys[7].value.includes(key):
+            tab = compil(tab);
+            while(!is_same(tab,prectab))
+            {
+                tab = add_tile(tab);
+                prectab = tab;
+                tab = compil(tab);
+            }
+            break;
+        case settings.keys[8].value.includes(key):
+            tab = rotater(rotater(tab));
+            tab = compil(tab);
+            tab = rotatel(rotatel(tab));
+            while(!is_same(tab,prectab))
+            {
+                tab = add_tile(tab);
+                prectab = tab;
+                tab = rotater(rotater(tab));
+                tab = compil(tab);
+                tab = rotatel(rotatel(tab));
+            }
             break;
         default:
             console.log(key)
