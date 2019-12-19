@@ -228,14 +228,14 @@ function restart()
     document.getElementById("score-container").style.visibility = "visible";
     document.getElementById("lose1").style.visibility = "hidden";
     document.getElementById("lose2").style.visibility = "hidden";
-    let tmp = [];
-    for (let j = 0 ; j < n; ++j)
-    {
-        tmp.push(0);
-    }
     let zeros = [];
     for (let i = 0 ; i < n; ++i)
     {
+        let tmp = [];
+        for (let j = 0 ; j < n; ++j)
+        {
+            tmp.push(0);
+        }
         zeros.push(tmp);
     }
     return zeros;
