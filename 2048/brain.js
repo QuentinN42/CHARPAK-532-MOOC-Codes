@@ -94,7 +94,6 @@ document.addEventListener('keydown', function(event)
     }
     writeHTML_object(document.getElementById("main"), tab);
     document.getElementById("score").innerText = score;
-    localStorage.setItem("score",score);
 });
 
 function color(value)
@@ -170,7 +169,7 @@ function writeHTML_object(HtmlObject, table)
     }
 }
 
-function compil(table)
+function compil(table, edit_score = true)
 {
     let out = [];
     table.forEach(work);
@@ -186,7 +185,7 @@ function compil(table)
         {
             if(line[i] == line[i+1])
             {
-                score += line[i];
+                if(edit_score) {score += line[i];}
                 line[i] = 2*line[i];
                 line.splice(i+1, 1);
             }
@@ -305,7 +304,7 @@ function lose()
 function have_lose(table)
 {
     let tmp;
-    tmp = compil(table);
+    tmp = compil(table, false);
     if(!is_same(table, tmp))
     {
         return false;
@@ -313,7 +312,7 @@ function have_lose(table)
     else
     {
         tmp = rotater(rotater(rotater(table)));
-        tmp = compil(tmp);
+        tmp = compil(tmp, false);
         tmp = rotater(tmp);
         if(!is_same(table, tmp))
         {
@@ -322,7 +321,7 @@ function have_lose(table)
         else
         {
             tmp = rotater(table);
-            tmp = compil(tmp);
+            tmp = compil(tmp, false);
             tmp = rotater(rotater(rotater(tmp)));
             if(!is_same(table, tmp))
             {
@@ -331,7 +330,7 @@ function have_lose(table)
             else
             {
                 tmp = rotater(rotater(table));
-                tmp = compil(tmp);
+                tmp = compil(tmp, false);
                 tmp = rotater(rotater(tmp));
                 return is_same(table, tmp);
             }
